@@ -14,6 +14,6 @@ Music visualizer is a simple song player application which shows unique visuals 
 
 Additional Developers:
 
-<a href="https://github.com/disler/final_stand_1.5" title="Dan Isler">Dan Isler</a>
+<a href="https://github.com/disler/" title="Dan Isler">Dan Isler</a>
 
 <a href="https://github.com/chrisisler" title="Chris Isler">Chris Isler</a>
