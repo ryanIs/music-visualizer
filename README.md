@@ -1,9 +1,19 @@
 # Music Visualizer
+
 Music visualizer is a simple song player application which shows unique visuals based on the music played.
 
-## Objectives
+<img src='./files/preview.gif'></img>
 
-<ul>
-  <li>Add buttons for switching modes (different coding blocks)</li>
-  <li>Documentation</li>
-</ul>
+# Objectives
+
+ [ ] Allow the user to change the bar/circle color.
+ 
+ [ ] Enable a mode which allows the color to change based on the music.
+
+## Credit
+
+Additional Developers:
+
+<a href="https://github.com/disler/final_stand_1.5" title="Dan Isler">Dan Isler</a>
+
+<a href="https://github.com/chrisisler" title="Chris Isler">Chris Isler</a>
