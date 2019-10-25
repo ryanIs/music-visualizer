@@ -6,9 +6,9 @@ Music visualizer is a simple song player application which shows unique visuals 
 
 # Objectives
 
- [ ] Allow the user to change the bar/circle color.
+- [ ] Allow the user to change the bar/circle color.
  
- [ ] Enable a mode which allows the color to change based on the music.
+- [ ] Enable a mode which allows the color to change based on the music.
 
 ## Credit
 
