@@ -20,95 +20,95 @@ var selectedVisualizer = selVisual.options[selVisual.selectedIndex].value
 // Base circle class
 class Circle {
 
-	constructor(circleX, circleY, circleRadius, myCtx, circleAttributes, circleId = null, destroyTimer = null) {
+  constructor(circleX, circleY, circleRadius, myCtx, circleAttributes, circleId = null, destroyTimer = null) {
 
-		this.changeSpeed = circleAttributes.changeSpeed;
+    this.changeSpeed = circleAttributes.changeSpeed;
 
-		// X coordinate on screen
-		this.x = circleX
+    // X coordinate on screen
+    this.x = circleX
 
-		// Y coordinate on screen
-		this.y = circleY
+    // Y coordinate on screen
+    this.y = circleY
 
-		// Change of X position per update
-		this.changeX = 0
+    // Change of X position per update
+    this.changeX = 0
 
-		// Change of Y position per update
-		this.changeY = 0
+    // Change of Y position per update
+    this.changeY = 0
 
-		// Radius of circle 
-		this.radius = 50
+    // Radius of circle 
+    this.radius = 50
 
-		this.circleAttr = circleAttributes
+    this.circleAttr = circleAttributes
 
-		this.ctx = myCtx;
-		
-		this.destroyTimer = destroyTimer
+    this.ctx = myCtx;
+    
+    this.destroyTimer = destroyTimer
 
     this.isMain = false
     
-		if(this.destroyTimer == null) {
-			this.isMain = true
-		}
+    if(this.destroyTimer == null) {
+      this.isMain = true
+    }
 
     this.circleId = circleId
     
-	}
+  }
 
   // Write the circles graphics (called every frame for a rewrite)
-	audioUpdate() {
-		// Write
-		this.ctx.beginPath();
-		this.ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
-		this.ctx.fillStyle = rgba(this.circleAttr.r, this.circleAttr.g, this.circleAttr.b, this.circleAttr.a)
-		this.ctx.fill()
-		this.ctx.strokeStyle = rgba(255,255,255,0);
-		this.ctx.stroke();
-	}
+  audioUpdate() {
+    // Write
+    this.ctx.beginPath();
+    this.ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+    this.ctx.fillStyle = rgba(this.circleAttr.r, this.circleAttr.g, this.circleAttr.b, this.circleAttr.a)
+    this.ctx.fill()
+    this.ctx.strokeStyle = rgba(255,255,255,0);
+    this.ctx.stroke();
+  }
 
-	// Move the circle around and handle circle removal
-	update() {
+  // Move the circle around and handle circle removal
+  update() {
 
-		this.changeX += -this.changeSpeed + random(this.changeSpeed * 2)
-		this.changeY += -this.changeSpeed + random(this.changeSpeed * 2)
+    this.changeX += -this.changeSpeed + random(this.changeSpeed * 2)
+    this.changeY += -this.changeSpeed + random(this.changeSpeed * 2)
 
-		this.x += this.changeX
-		this.y += this.changeY
+    this.x += this.changeX
+    this.y += this.changeY
 
-		if(this.destroyTimer != null) {
+    if(this.destroyTimer != null) {
 
-			this.destroyTimer -= 1
-			if(this.destroyTimer < 20) {
-				this.circleAttr.a -= 0.03;
-			}
-			if(this.destroyTimer < 1) {
-				this.destroy(); 
-			}
+      this.destroyTimer -= 1
+      if(this.destroyTimer < 20) {
+        this.circleAttr.a -= 0.03;
+      }
+      if(this.destroyTimer < 1) {
+        this.destroy(); 
+      }
 
-		}
+    }
 
-		if(this.isMain) {
-			if(random(100) == 0) {
-				//extraCircles
-			}
-		}
+    if(this.isMain) {
+      if(random(100) == 0) {
+        //extraCircles
+      }
+    }
   }
   
-	// Remove this circle from the array of circle (clearing up space)
-	destroy() {
-		if(!this.isMain) {
-			extraCircles[this.circleId] = null;
-		}
-	}
+  // Remove this circle from the array of circle (clearing up space)
+  destroy() {
+    if(!this.isMain) {
+      extraCircles[this.circleId] = null;
+    }
+  }
 }
 
 // This looks ... unused
 var mainCircles = [
-	new Circle(100, 100, 50, document.getElementById("canvas").getContext("2d"), {r:200, g: 100, b: 5})
+  new Circle(100, 100, 50, document.getElementById("canvas").getContext("2d"), {r:200, g: 100, b: 5})
 ];
 
 // if(isRyanCode) {
-	mainCircles = [];			
+  mainCircles = [];			
 // }
 
 // Implement primary circles array
@@ -117,31 +117,31 @@ extraCircles.fill(null);
 
 // Adds a circle to the extraCircles array
 function addExtraCircle(x, y, radius, canvasContext, circleAttrs, circleDuration = 90) {
-	for(let i = 0; i < extraCircles.length; i++) {
-		if(extraCircles[i] == null) {
-			extraCircles[i] = new Circle(x, y, radius, canvasContext, circleAttrs, i, circleDuration);
-			return true;
-			break;
-		}
-	}
-	return false;
+  for(let i = 0; i < extraCircles.length; i++) {
+    if(extraCircles[i] == null) {
+      extraCircles[i] = new Circle(x, y, radius, canvasContext, circleAttrs, i, circleDuration);
+      return true;
+      break;
+    }
+  }
+  return false;
 }
 
 // Get variables from URL string
 function getQueryVariable(variable) {
 
-	var query = window.location.search.substring(1);
-	var vars = query.split("&");
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
 
-	for (var i=0;i<vars.length;i++) {
+  for (var i=0;i<vars.length;i++) {
 
-		var pair = vars[i].split("=");
-		
-		if(pair[0] == variable) 
-			return pair[1];
+    var pair = vars[i].split("=");
+    
+    if(pair[0] == variable) 
+      return pair[1];
 
-	}
-	return(false);
+  }
+  return(false);
 }
 
 /**
@@ -150,27 +150,27 @@ function getQueryVariable(variable) {
  * @param exclusiveRand {Number} - Random number.
  */
 function random(exclusiveRand) {
-	return Math.floor(exclusiveRand * Math.random());
+  return Math.floor(exclusiveRand * Math.random());
 }
 
 // Update each circle
 function circleUpdateHandler() {
 
-	for(let i = 0; i < mainCircles.length; i++) {
-		mainCircles[i].update();
-	}
-	
-	for(let i = 0; i < extraCircles.length; i++) { 
-		if(extraCircles[i] != null) {
-			extraCircles[i].update();
-		}
-	}
+  for(let i = 0; i < mainCircles.length; i++) {
+    mainCircles[i].update();
+  }
+  
+  for(let i = 0; i < extraCircles.length; i++) { 
+    if(extraCircles[i] != null) {
+      extraCircles[i].update();
+    }
+  }
 
 }
 
 // Set the interval for updating ALL circles
 function initCircles() {
-	var myTimeOut = setInterval(circleUpdateHandler, 35);
+  var myTimeOut = setInterval(circleUpdateHandler, 35);
 }
 
 /**
@@ -183,75 +183,75 @@ function initCircles() {
  */
 function funcCircles(soundData, bufferLength, ctx) {
 
-	for(let i = 0; i < extraCircles.length; i++) { 
-		if(extraCircles[i] != null) {
-			extraCircles[i].audioUpdate();
-		}
-	}
+  for(let i = 0; i < extraCircles.length; i++) { 
+    if(extraCircles[i] != null) {
+      extraCircles[i].audioUpdate();
+    }
+  }
 
-	for (var _frequency = 0; _frequency < bufferLength; _frequency++) {
-		
-		if(soundData[_frequency] > 200) { 
-			var circleAttrs = {
-				r: (_frequency < 30) ? soundData[_frequency] : 0,
-				g: (_frequency < 60) ? soundData[_frequency] : 0,
-				b: (_frequency > 90) ? soundData[_frequency] : 0,
-				a: 0.5,
-				//changeSpeed: soundData[_frequency] * 0.010		
-				changeSpeed: 5
-			}
-			addExtraCircle(WIDTH / 2, HEIGHT / 2, soundData[_frequency], ctx, circleAttrs, 50);
-		}
-		
-	}
+  for (var _frequency = 0; _frequency < bufferLength; _frequency++) {
+    
+    if(soundData[_frequency] > 200) { 
+      var circleAttrs = {
+        r: (_frequency < 30) ? soundData[_frequency] : 0,
+        g: (_frequency < 60) ? soundData[_frequency] : 0,
+        b: (_frequency > 90) ? soundData[_frequency] : 0,
+        a: 0.5,
+        //changeSpeed: soundData[_frequency] * 0.010		
+        changeSpeed: 5
+      }
+      addExtraCircle(WIDTH / 2, HEIGHT / 2, soundData[_frequency], ctx, circleAttrs, 50);
+    }
+    
+  }
 
 }
 
 // Initialize 
 window.onload = function() {
 
-	var file = document.getElementById("thefile");
-	var audio = document.getElementById("audio");
+  var file = document.getElementById("thefile");
+  var audio = document.getElementById("audio");
   
   // Handle music file upload
-	file.onchange = function() {
+  file.onchange = function() {
 
-		var canvas = document.getElementById("canvas");
-		var ctx = canvas.getContext("2d");
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
     var files = this.files;
     
-		audio.src = URL.createObjectURL(files[0]);
-		audio.load();
+    audio.src = URL.createObjectURL(files[0]);
+    audio.load();
     audio.play();
     
-		var context = new AudioContext();
-		var src = context.createMediaElementSource(audio);
-		var analyser = context.createAnalyser();
-		
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		
-		WIDTH = canvas.width;
-		HEIGHT = canvas.height;
-		console.log(`WIDTH`, WIDTH)
-		console.log(`HEIGHT`, HEIGHT)
+    var context = new AudioContext();
+    var src = context.createMediaElementSource(audio);
+    var analyser = context.createAnalyser();
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    WIDTH = canvas.width;
+    HEIGHT = canvas.height;
+    console.log(`WIDTH`, WIDTH)
+    console.log(`HEIGHT`, HEIGHT)
   
-		src.connect(analyser);
-		analyser.connect(context.destination);
-		analyser.fftSize = 256;
+    src.connect(analyser);
+    analyser.connect(context.destination);
+    analyser.fftSize = 256;
 
-		var bufferLength = analyser.frequencyBinCount;
+    var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
     
-		console.log(bufferLength);
+    console.log(bufferLength);
 
-		var barWidth = (WIDTH / bufferLength) * 2.5;
-		var barHeight;
-		var x = 0;
-	
-		// if(isRyanCode != false) {
-			initCircles();
-		// }
+    var barWidth = (WIDTH / bufferLength) * 2.5;
+    var barHeight;
+    var x = 0;
+  
+    // if(isRyanCode != false) {
+      initCircles();
+    // }
 
     // Render our animation (as soon as the graphics card is ready - go)
     function renderFrame() {
@@ -415,24 +415,24 @@ window.onload = function() {
       setOpacity(audio, 0)
     }
 
-	};
+  };
 
-	// audio.src = ".\Watch It Burn Down\\music\\iterations\\25\\album_song_25.wav";
+  // audio.src = ".\Watch It Burn Down\\music\\iterations\\25\\album_song_25.wav";
 };
 
 // Convert OOP rgb to str 'rgb(x, x, x)' format
 function rgb(r, g, b) {
-	return `rgb(${r}, ${g}, ${b})`
+  return `rgb(${r}, ${g}, ${b})`
 }
 
 // Convert OOP rgba to str 'rgba(x, x, x, x)' format
 function rgba(r, g, b, a) {
-	return `rgb(${r}, ${g}, ${b}, ${a})`
+  return `rgb(${r}, ${g}, ${b}, ${a})`
 }
 
 // Set opacity of DOM object
 function setOpacity(el, amount) {
-	el.style.opacity = amount;
+  el.style.opacity = amount;
 }
 
 // Check for change of select menu
