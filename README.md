@@ -8,7 +8,7 @@ Music visualizer is a simple song player application which shows unique visuals 
 
 Navigate to the page then upload your desired sound file. Enjoy the visuals!
 
-<img src='./files/favicon.png' width='20px' height='20px' style='margin: 0 5px; '></img> [Music Visualizer](https://ryanis.github.io/music-visualizer/)
+<img src='./files/favicon.png' width='20px' height='20px' style='margin: 0 5px;' target='_blank'></img> [Music Visualizer](https://ryanis.github.io/music-visualizer/)
 
 # Objectives
 
